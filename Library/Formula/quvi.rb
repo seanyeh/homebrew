@@ -9,6 +9,9 @@ class Quvi < Formula
   depends_on 'pcre'
   depends_on 'lua'
 
+  # Leopard's curl is too old.
+  depends_on 'curl' if MacOS.leopard?
+  
   def install
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}",
