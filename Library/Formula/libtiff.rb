@@ -13,6 +13,8 @@ class Libtiff < Formula
 
   def install
     ENV.universal_binary if ARGV.build_universal?
+    
+    ENV['CFLAGS'] = '-DHAVE_APPLE_OPENGL_FRAMEWORK=1'
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
     system "make install"
