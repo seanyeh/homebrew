@@ -9,9 +9,11 @@ class Aria2 < Formula
 
   # Leopard's libxml2 is too old.
   depends_on 'libxml2' if MacOS.leopard?
+  # Leopard's openssl is too old as well.
+  depends_on 'openssl' if MacOS.leopard?
 
   def install
-    system "./configure", "--disable-dependency-tracking",
+    system "./configure", "--disable-dependency-tracking", "--with-openssl", "--without-gnutls",
                           "--prefix=#{prefix}"
     system "make install"
   end
